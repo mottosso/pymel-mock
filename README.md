@@ -30,7 +30,7 @@ pm.createNode("transform")
 # AttributeError: 'module' object has no attribute 'createNode' # 
 ```
 
-Notice how it still imports, but doesn't carry any of the relevant member around.
+Notice how it still imports, but doesn't carry any of the relevant members around.
 
 <br>
 
@@ -40,6 +40,7 @@ Place `pymel.py` on in one of these locations.
 
 - `PYTHONPATH`
 - `<documents>/maya/scripts`
+- Anywhere, and add parent directory to `Maya.env`
 
 **Example**
 
