@@ -66,7 +66,11 @@ $ c:\program files\autodesk\maya2018\bin\maya.exe
 
 ### Limitations
 
+> `# ImportError: No module named tools.py2mel #`
+
 Up till Maya 2017, PyMEL was a bundled bystander to Maya. But lately, some of Maya is written using it; most notably MASH. If you use MASH, then this mock will disable some of its functionality.
+
+You can squash this message by not loading MASH on start-up. It's a plain plug-in, to be found in the Maya Plug-in Manager.
 
 <br>
 
