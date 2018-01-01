@@ -36,7 +36,17 @@ Notice how it still imports, but doesn't carry any of the relevant members aroun
 
 ### Usage
 
-Place `pymel.py` on in one of these locations.
+Maya needs to know that *this* `pymel` is the one to import.
+
+```python
+import sys
+sys.path.insert(0, "/path/to/pymel-mock")
+import pymel
+```
+
+> To avoid PEP8 warning E402, you can use `__import__()` instead.
+
+Alternatively, you may try one of `pymel.py` on in one of these locations.
 
 - `PYTHONPATH`
 - `<documents>/maya/scripts`
@@ -49,6 +59,8 @@ $ wget https://raw.githubusercontent.com/mottosso/pymel-mock/master/pymel.py
 $ set PYTHONPATH=%cd%;%PYTHONPATH%
 $ c:\program files\autodesk\maya2018\bin\maya.exe
 ```
+
+**However** keep in mind Maya may scramble `sys.path`, making *this* `pymel.py` appear after the one shipped with Maya. The former approach is safest.
 
 <br>
 
