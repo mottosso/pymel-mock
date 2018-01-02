@@ -36,15 +36,33 @@ Notice how it still imports, but doesn't carry any of the relevant members aroun
 
 ### Usage
 
-Maya needs to know that *this* `pymel` is the one to import.
+Maya needs to know that *this* `pymel` is the one to import, whenever it needs to import it.
+
+Run this as early as possible; such as via one of your `userSetup.py`.
 
 ```python
-import sys
-sys.path.insert(0, "/path/to/pymel-mock")
-import pymel
+def overridePymel():
+	import sys
+
+	# Ensure *our* pymel is the one discovered
+	sys.path.insert(0, "/path/to/pymel-mock")
+	
+	# Add `pymel` to `sys.modules`
+	import pymel
+
+	# reload(pymel.core) to restore original
+	sys.path.pop(0)
+
+	# Disable MASH, the only library depending on PyMEL
+	cmds.unloadPlugin("MASH.mll")
+	cmds.pluginInfo("MASH.mll", edit=True, autoload=False)
+
+overridePymel()
 ```
 
 > To avoid PEP8 warning E402, you can use `__import__()` instead.
+
+Including the import statement. This way, `pymel` will reside in `sys.modules` which Python looks for whenever an import is made. If the proposed library has already been imported, it won't look on disk no more but rather hand over the one already imported, which in this case is our version.
 
 Alternatively, you may try one of `pymel.py` on in one of these locations.
 
