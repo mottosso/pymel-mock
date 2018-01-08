@@ -55,7 +55,6 @@ def overridePymel():
 
 	# Disable MASH, the only library depending on PyMEL
 	cmds.unloadPlugin("MASH.mll")
-	cmds.pluginInfo("MASH.mll", edit=True, autoload=False)
 
 overridePymel()
 ```
